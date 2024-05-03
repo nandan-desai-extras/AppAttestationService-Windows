@@ -1,0 +1,47 @@
+// File RPCDefinitions.idl
+[
+   // A unique identifier that distinguishes this interface from other interfaces.
+   uuid(00000001-EAF3-4A7A-A0F2-BCE4C30DA77E),
+
+   // This is version 1.0 of this interface.
+   version(1.0)
+]
+interface RPCDefinitions 
+{
+    error_status_t RPC_GetEK_CreateAIK
+    (
+        [in, string] wchar_t* AIKname,
+        [in, string] wchar_t* serverNonce,
+        [out] unsigned long* EKsize,
+        [out, size_is(, *EKsize)] unsigned char** EK,
+        [out] unsigned long* idBindingSize,
+        [out, size_is(, *idBindingSize)] unsigned char** idBinding
+    );
+
+    
+    error_status_t RPC_VerifyActivationBlob
+    (
+        [in, string] wchar_t* AIKname,
+        [in] unsigned long serverActivationBlobSize,
+        [in, size_is(serverActivationBlobSize)] unsigned char* serverActivationBlob,
+        [out] unsigned long* serverSecretSize,
+        [out, size_is(, *serverSecretSize)] unsigned char** serverSecret
+    );
+
+    
+    error_status_t RPC_RegisterAIK
+    (
+        [in, string] wchar_t* AIKname
+    );
+
+    error_status_t RPC_GetAppAttestation
+    (
+        [in] handle_t Binding,
+        [in, string] wchar_t* AIKname,
+        [in, string] wchar_t* serverNonce,
+        [out] unsigned long* platformAttestationBlobSize,
+        [out] unsigned long* appAttestationBlobSize,
+        [out] unsigned long* attestationBlobTotalSize,
+        [out, size_is(, *attestationBlobTotalSize)] unsigned char** attestationBlob
+    );
+}

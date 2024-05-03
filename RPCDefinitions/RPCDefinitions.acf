@@ -1,0 +1,8 @@
+// File RPCDefinitions.acf
+[
+   // This interface will use an implicit binding handle named hExample1Binding.
+   implicit_handle(handle_t hExample1Binding)
+]
+interface RPCDefinitions // The interface is named Example1
+{
+}
